@@ -1,6 +1,15 @@
 # Raspberry Pi
 
-TODO
+1. Install Raspberry Pi Imager
+2. Flash Raspberry Pi OS to a microSD card using Raspberry Pi Imager
+3. Insert microSD card into Raspberry Pi
+4. Connect keyboard, mouse, and monitor to Raspberry Pi
+5. Turn on Raspberry Pi
+6. Follow on-screen setup instructions
+7. Clone this repo on Raspberry Pi
+8. Install Docker on Raspberry Pi
+9. Install Docker Compose on Raspberry Pi
+10. 
 
 ## .env File
 
