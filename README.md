@@ -23,11 +23,10 @@ EMAIL_ADDRESS=...
 
 ## Ports
 
-nextcloud.{domain-name} => Nextcloud
-bitwarden.{domain-name} => Bitwarden
-blog.{domain-name} => Drupal
-pi-hole.{domain-name} => Pi-hole
-
+localhost:8080 => Nextcloud
+localhost:8081 => Bitwarden
+localhost:8082 => Drupal
+localhost:8083 => Pi-hole
 
 ## Links
 
@@ -41,4 +40,3 @@ pi-hole.{domain-name} => Pi-hole
   - [Bitwarden Container Image](https://hub.docker.com/r/bitwardenrs/server)
   - [Drupal Container Image](https://hub.docker.com/_/drupal/)
   - [Pi-hole Container Image](https://hub.docker.com/r/pihole/pihole)
-  - [Nginx Proxy](https://hub.docker.com/r/jwilder/nginx-proxy)

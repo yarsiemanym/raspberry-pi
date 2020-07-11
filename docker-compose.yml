@@ -27,8 +27,7 @@ services:
         restart: always
         depends_on:
             - postgres
-            - redis
-            - nginx-proxy
+            - redisd
         volumes:
             - nextcloud:/var/www/html
         environment:
@@ -37,21 +36,14 @@ services:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             REDIS_HOST: redis
-            VIRTUAL_HOST: nextcloud.${DOMAIN_NAME}
-            LETSENCRYPT_HOST: nextcloud.${DOMAIN_NAME}
 
     bitwarden:
-        image : bitwardenrs/server:latest
+        image : bitwardenrs/server:raspberry
         hostname: bitwarden
         container_name: bitwarden
         restart: always
-        depends_on:
-            - nginx-proxy
         volumes:
             - bitwarden:/data
-        environment: 
-            VIRTUAL_HOST: bitwarden.${DOMAIN_NAME}
-            LETSENCRYPT_HOST: bitwarden.${DOMAIN_NAME}
 
     drupal:
         image: drupal:latest
@@ -60,7 +52,6 @@ services:
         restart: always
         depends_on: 
             - postgres
-            - nginx-proxy
         volumes:
             - drupal:/var/www/html
         environment: 
@@ -72,57 +63,21 @@ services:
         hostname: pihole
         container_name: pihole
         restart: always
-        depends_on:
-            - nginx-proxy
         volumes:
             - pihole:/etc/pihole
             - pihole-dnsmasq:/etc/dnsmasq.d/
-        #ports:
-            #- 53:53/tcp
-            #- 53:53/udp
-            #- 67:67/udp
+        ports:
+            - 53:53/tcp
+            - 53:53/udp
+            - 67:67/udp
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
-            VIRTUAL_HOST: pi-hole.${DOMAIN_NAME}
-            LETSENCRYPT_HOST: pi-hole.${DOMAIN_NAME}
         dns:
             - 127.0.0.1
             - 1.1.1.1
         cap_add:
             - NET_ADMIN
-
-    nginx-proxy:
-        image: jwilder/nginx-proxy:latest
-        hostname: nginx-proxy
-        container_name: nginx-proxy
-        restart: always
-        volumes:
-            - nginx-conf:/etc/nginx/conf.d
-            - nginx-certs:/etc/nginx/certs:ro
-            - nginx-vhost:/etc/nginx/vhost.d
-            - nginx-html:/usr/share/nginx/html
-            - nginx-dhparam:/etc/nginx/dhparam
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-        ports: 
-            - 80:80
-            - 443:443
-
-    #letsencrypt:
-    #    image: jrcs/letsencrypt-nginx-proxy-companion:latest
-    #    hostname: letsencrypt
-    #    container_name: letsencrypt
-    #    restart: always
-    #    volumes:
-    #        - nginx-conf:/etc/nginx/conf.d
-    #        - nginx-certs:/etc/nginx/certs:rw
-    #        - nginx-vhost:/etc/nginx/vhost.d
-    #        - nginx-html:/usr/share/nginx/html
-    #        - nginx-dhparam:/etc/nginx/dhparam
-    #        - /var/run/docker.sock:/var/run/docker.sock:ro
-    #    environment: 
-    #        NGINX_PROXY_CONTAINER: nginx-proxy
-    #        DEFAULT_EMAIL: ${EMAIL_ADDRESS}
 
 volumes:    
     postgres:
@@ -131,8 +86,3 @@ volumes:
     drupal:
     pihole:
     pihole-dnsmasq:
-    nginx-conf:
-    nginx-certs:
-    nginx-vhost:
-    nginx-html:
-    nginx-dhparam:
