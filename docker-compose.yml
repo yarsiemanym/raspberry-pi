@@ -27,7 +27,7 @@ services:
         restart: always
         depends_on:
             - postgres
-            - redisd
+            - redis
         volumes:
             - nextcloud:/var/www/html
         environment:
