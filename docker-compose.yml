@@ -54,9 +54,6 @@ services:
             - postgres
         volumes:
             - drupal:/var/www/html
-        environment: 
-            VIRTUAL_HOST: blog.${DOMAIN_NAME}
-            LETSENCRYPT_HOST: blog.${DOMAIN_NAME}
 
     pihole:
         image: pihole/pihole:latest
