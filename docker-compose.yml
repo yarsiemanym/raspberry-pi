@@ -64,12 +64,13 @@ services:
         container_name: pihole
         restart: always
         volumes:
-            - pihole:/etc/pihole
-            - pihole-dnsmasq:/etc/dnsmasq.d
+            - ./pihole:/etc/pihole
+            - ./pihole/dnsmasq.d:/etc/dnsmasq.d
         ports:
             - 53:53/tcp
             - 53:53/udp
             - 67:67/udp
+            - 8080:80
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
@@ -100,5 +101,3 @@ volumes:
     nextcloud:
     bitwarden:
     drupal:
-    pihole:
-    pihole-dnsmasq:
