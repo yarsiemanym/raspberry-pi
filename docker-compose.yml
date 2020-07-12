@@ -89,7 +89,8 @@ services:
             - blog
             - pihole
         volumes:
-            - ./reverse-proxy:/etc/nginx
+            - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+            - ./reverse-proxy/conf.d:/etc/nginx/conf.d
         ports: 
             - 80:80
 
