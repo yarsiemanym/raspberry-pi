@@ -28,6 +28,8 @@ services:
         depends_on:
             - postgres
             - redis
+        ports:
+            - 8080:80
         volumes:
             - nextcloud:/var/www/html
         environment:
