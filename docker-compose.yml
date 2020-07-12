@@ -36,7 +36,7 @@ services:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             REDIS_HOST: redis
-            NEXTCLOUD_TRUSTED_DOMAINS: blog.salty-rasp.com
+            NEXTCLOUD_TRUSTED_DOMAINS: blog.zaborelli.lan
 
     bitwarden:
         image : bitwardenrs/server:raspberry
@@ -74,6 +74,7 @@ services:
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
+            VIRTUAL_HOST: pihole.zaborelli.lan
         dns:
             - 127.0.0.1
             - 1.1.1.1
