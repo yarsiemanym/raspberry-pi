@@ -36,6 +36,7 @@ services:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             REDIS_HOST: redis
+            NEXTCLOUD_TRUSTED_DOMAINS: blog.salty-rasp.com
 
     bitwarden:
         image : bitwardenrs/server:raspberry
