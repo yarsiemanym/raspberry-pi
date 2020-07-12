@@ -49,6 +49,7 @@ services:
             - bitwarden:/data
         ports:
             - 3012:3012
+            - 8081:80
 
     blog:
         image: drupal:latest
@@ -57,6 +58,8 @@ services:
         restart: always
         depends_on: 
             - postgres
+        ports:
+            - 8082:80
         volumes:
             - drupal:/var/www/html
 
@@ -72,7 +75,7 @@ services:
             - 53:53/tcp
             - 53:53/udp
             - 67:67/udp
-            - 8080:80
+            - 8083:80
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
