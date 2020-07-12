@@ -28,10 +28,10 @@ services:
         depends_on:
             - postgres
             - redis
-        ports:
-            - 8080:80
         volumes:
             - nextcloud:/var/www/html
+        ports:
+            - 8080:80
         environment:
             POSTGRES_HOST: postgres
             POSTGRES_DB: ${POSTGRES_DB}
@@ -40,26 +40,27 @@ services:
             REDIS_HOST: redis
 
     bitwarden:
-        image : bitwardenrs/server:raspberry
+        image : bitwardenrs/server:latest #raspberry
         hostname: bitwarden
         container_name: bitwarden
         restart: always
-        ports:
-            - 8081:80
         volumes:
             - bitwarden:/data
+        ports:
+            - 8081:80
+            - 3012:3012
 
-    drupal:
+    blog:
         image: drupal:latest
-        hostname: drupal
-        container_name: drupal
+        hostname: blog
+        container_name: blog
         restart: always
         depends_on: 
             - postgres
-        ports:
-            - 8082:80
         volumes:
             - drupal:/var/www/html
+        ports:
+            - 8082:80
 
     pihole:
         image: pihole/pihole:latest
@@ -68,11 +69,11 @@ services:
         restart: always
         volumes:
             - pihole:/etc/pihole
-            - pihole-dnsmasq:/etc/dnsmasq.d/
+            - pihole-dnsmasq:/etc/dnsmasq.d
         ports:
-            - 53:53/tcp
-            - 53:53/udp
-            - 67:67/udp
+            #- 53:53/tcp
+            #- 53:53/udp
+            #- 67:67/udp
             - 8083:80
         environment:
             TZ: America/New York
@@ -82,6 +83,21 @@ services:
             - 1.1.1.1
         cap_add:
             - NET_ADMIN
+
+    reverse-proxy:
+        image: nginx:latest
+        hostname: reverse-proxy
+        container_name: reverse-proxy
+        restart: always
+        depends_on: 
+            - nextcloud
+            - bitwarden
+            - blog
+            - pihole
+        volumes:
+            - ./reverse-proxy:/etc/nginx/conf.d
+        ports: 
+            - 80:80
 
 volumes:    
     postgres:
