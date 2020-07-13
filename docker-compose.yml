@@ -15,7 +15,7 @@ services:
             PGDATA: /var/lib/postgresql/data/pgdata
 
     mysql:
-        image: mysql/mysql-server:latest
+        image: beercan1989/arm-mysql:latest
         hostname: mysql
         container_name: mysql
         restart: always
