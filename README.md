@@ -55,20 +55,36 @@ sudo mkdir /mnt/wd-passport
 sudo mount /dev/sdb1 /mnt/wd-passport -o uid=pi,gid=pi
 ```
 
-16. Start containers
+16. Start Pi-hole first
 
 ```
-docker-compose up -d
+docker-compose up -d pihole
 ```
 
 17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
+18. Start web apps next
+
+```
+docker-compose up -d nextcloud bitwarden blog
+```
+
+19. Start Nginx reverse proxy last
+
+```
+docker-compose up -d reverse-proxy
+```
 
 ## Ports
 
-localhost:8080 => Nextcloud
-localhost:8081 => Bitwarden
-localhost:8082 => Drupal
-localhost:8083 => Pi-hole
+192.168.1.200:8080 => Nextcloud
+192.168.1.200:8081 => Bitwarden
+192.168.1.200:8082 => Drupal
+192.168.1.200:8083 => Pi-hole
+
+nextcloud.home.lan => Nextcloud
+bitwarden.home.lan => Bitwarden
+blog.home.lan => Drupal
+pihole.home.lan => Pi-hole
 
 ## Links
 
