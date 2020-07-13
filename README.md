@@ -71,7 +71,7 @@ docker-compose up -d pihole
 ```
 docker-compose up -d adminer
 docker-compose up -d nextcloud
-docker-compose up -d bitwarden 
+docker-compose up -d bitwarden
 docker-compose up -d blog
 ```
 
@@ -83,10 +83,10 @@ docker-compose up -d reverse-proxy
 
 ## Virtual Hosts
 
-nextcloud.home.lan => Nextcloud
-bitwarden.home.lan => Bitwarden
-blog.home.lan => Wordpress
-pihole.home.lan => Pi-hole
+nextcloud.home.lan => Nextcloud  
+bitwarden.home.lan => Bitwarden  
+blog.home.lan => Wordpress  
+pihole.home.lan => Pi-hole  
 
 ## Links
 
