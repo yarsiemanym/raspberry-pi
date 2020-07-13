@@ -6,9 +6,11 @@
 POSTGRES_DB=...
 POSTGRES_USER=...
 POSTGRES_PASSWORD=...
+MYSQL_ROOT_PASSWORD=...
+MYSQL_USER=...
+MYSQL_PASSWORD=...
+MYSQL_DATABASE=...
 PIHOLE_PASSWORD=...
-NEXTCLOUD_ADMIN_USER=...
-NEXTCLOUD_ADMIN_PASSWORD=...
 DOMAIN_NAME=...
 ```
 
@@ -62,7 +64,7 @@ docker-compose up -d pihole
 ```
 
 17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
-18. Start Bitwarden
+18. Start web apps next
 
 ```
 docker-compose up -d redis-commander
@@ -78,16 +80,11 @@ docker-compose up -d blog
 docker-compose up -d reverse-proxy
 ```
 
-## Ports
-
-192.168.1.200:8080 => Nextcloud
-192.168.1.200:8081 => Bitwarden
-192.168.1.200:8082 => Drupal
-192.168.1.200:8083 => Pi-hole
+## Virtual Hosts
 
 nextcloud.home.lan => Nextcloud
 bitwarden.home.lan => Bitwarden
-blog.home.lan => Drupal
+blog.home.lan => Wordpress
 pihole.home.lan => Pi-hole
 
 ## Links
@@ -100,9 +97,12 @@ pihole.home.lan => Pi-hole
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Docker Hub](https://hub.docker.com)
   - [Postgres Container Image](https://hub.docker.com/_/postgres)
+  - [MySQL Container Image](https://hub.docker.com/r/beercan1989/arm-mysql) (ARM compatible image)
+  - [Adminer Container Image](https://hub.docker.com/_/adminer)
+  - [Redis Container Image](https://hub.docker.com/_/redis)
   - [Nextcloud Container Image](https://hub.docker.com/_/nextcloud)
-  - [Bitwarden Container Image](https://hub.docker.com/r/bitwardenrs/server)
-  - [Drupal Container Image](https://hub.docker.com/_/drupal/)
+  - [Bitwarden Container Image](https://hub.docker.com/r/bitwardenrs/server) (ARM compatible image)
+  - [Wordpress Container Image](https://hub.docker.com/_/wordpress/)
   - [Pi-hole Container Image](https://hub.docker.com/r/pihole/pihole)
   - [Nginx Container Image](https://hub.docker.com/_/nginx)
 - [evox95/wdpassport-utils](https://github.com/evox95/wdpassport-utils)
