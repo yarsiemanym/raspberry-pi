@@ -1,5 +1,7 @@
 # Raspberry Pi
 
+![Diagram](./diagrams/raspberry-pi.png)
+
 ## .env File
 
 ```
