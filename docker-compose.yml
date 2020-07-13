@@ -38,6 +38,7 @@ services:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             REDIS_HOST: redis
+            TRUSTED_PROXIES: reverse-proxy
 
     bitwarden:
         image : bitwardenrs/server:raspberry
@@ -84,21 +85,22 @@ services:
         cap_add:
             - NET_ADMIN
 
-    #reverse-proxy:
-    #    image: nginx:latest
-    #    hostname: reverse-proxy
-    #    container_name: reverse-proxy
-    #    restart: always
-    #    depends_on: 
-    #        - nextcloud
-    #        - bitwarden
-    #        - blog
-    #        - pihole
-    #    volumes:
-    #        - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
-    #        - ./reverse-proxy/conf.d:/etc/nginx/conf.d
-    #    ports: 
-    #        - 80:80
+    reverse-proxy:
+        image: nginx:latest
+        hostname: reverse-proxy
+        container_name: reverse-proxy
+        restart: always
+        depends_on: 
+            - nextcloud
+            - bitwarden
+            - blog
+            - pihole
+        volumes:
+            - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+            - ./reverse-proxy/conf.d:/etc/nginx/conf.d
+        ports: 
+            - 80:80
+            - 443:443
 
 volumes:    
     postgres:
