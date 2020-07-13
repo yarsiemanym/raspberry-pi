@@ -7,6 +7,9 @@ POSTGRES_DB=...
 POSTGRES_USER=...
 POSTGRES_PASSWORD=...
 PIHOLE_PASSWORD=...
+NEXTCLOUD_ADMIN_USER=...
+NEXTCLOUD_ADMIN_PASSWORD=...
+DOMAIN_NAME=...
 ```
 
 ## Setup Steps
@@ -18,7 +21,8 @@ PIHOLE_PASSWORD=...
 5. Connect keyboard, mouse, and monitor to Raspberry Pi
 6. Turn on Raspberry Pi
 7. Follow on-screen setup instructions
-8. Clone this repo on Raspberry Pi
+8. [Give Raspberry Pi a static IP address](https://pimylifeup.com/raspberry-pi-static-ip-address/) (192.168.1.200)
+9. Clone this repo on Raspberry Pi
 
 ```
 git clone https://github.com/yarsiemanym/raspberry-pi.git
@@ -57,6 +61,8 @@ sudo mount /dev/sdb1 /mnt/wd-passport -o uid=pi,gid=pi
 docker-compose up -d
 ```
 
+17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
+
 ## Ports
 
 localhost:8080 => Nextcloud
@@ -68,6 +74,8 @@ localhost:8083 => Pi-hole
 
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
 - [Raspberry Pi OS](https://www.raspberrypi.org/downloads/)
+- [How to Setup a Raspberry Pi Static IP Address](https://pimylifeup.com/raspberry-pi-static-ip-address/)
+- [Raspberry Pi DNS Settings: How to Change the DNS](https://pimylifeup.com/raspberry-pi-dns-settings/)
 - [Installing docker and docker-compose on a Raspberry Pi 4](https://www.zuidwijk.com/blog/installing-docker-and-docker-compose-on-a-raspberry-pi-4/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Docker Hub](https://hub.docker.com)

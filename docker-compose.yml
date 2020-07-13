@@ -39,6 +39,8 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             REDIS_HOST: redis
             TRUSTED_PROXIES: reverse-proxy
+            NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_ADMIN_USER}
+            NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD}
 
     bitwarden:
         image : bitwardenrs/server:raspberry
@@ -79,7 +81,7 @@ services:
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
-            VIRTUAL_HOST: pihole.home.lan
+            VIRTUAL_HOST: pihole.${DOMAIN_NAME}
         dns:
             - 127.0.0.1
             - 1.1.1.1
