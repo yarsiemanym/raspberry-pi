@@ -66,10 +66,9 @@ docker-compose up -d pihole
 ```
 
 17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
-18. Start web apps next
+18. Start web apps next in no particular order
 
 ```
-docker-compose up -d redis-commander
 docker-compose up -d adminer
 docker-compose up -d nextcloud
 docker-compose up -d bitwarden 
