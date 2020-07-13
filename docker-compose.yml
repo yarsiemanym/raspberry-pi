@@ -14,11 +14,26 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             PGDATA: /var/lib/postgresql/data/pgdata
 
+    adminer:
+        image: adminer:latest
+        hostname: adminer
+        container_name: adminer
+        restart: always
+
     redis:
         image: redis:latest
         hostname: redis
         container_name: redis
         restart: always
+
+    redis-commander:
+        image: rediscommander/redis-commander:latest
+        hostname: redis-commander
+        container_name: redis-commander
+        environment: 
+            REDIS_HOSTS: docker:redis:6379
+            HTTP_USER: ${REDIS_COMMANDER_USER}
+            HTTP_PASSWORD: ${REDIS_COMMANDER_PASSWORD}
 
     nextcloud:
         image: nextcloud:latest
@@ -28,8 +43,6 @@ services:
         depends_on:
             - postgres
             - redis
-        ports:
-            - 8080:80
         volumes:
             - /mnt/wd-passport/nextcloud:/var/www/html
         environment:
@@ -52,7 +65,6 @@ services:
             - /mnt/wd-passport/bitwarden:/data
         ports:
             - 3012:3012
-            - 8081:80
 
     blog:
         image: drupal:latest
@@ -61,8 +73,6 @@ services:
         restart: always
         depends_on: 
             - postgres
-        ports:
-            - 8082:80
         volumes:
             - /mnt/wd-passport/drupal:/var/www/html
 
@@ -78,7 +88,6 @@ services:
             - 53:53/tcp
             - 53:53/udp
             - 67:67/udp
-            - 8083:80
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
