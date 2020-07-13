@@ -28,17 +28,6 @@ services:
         container_name: redis
         restart: always
 
-    redis-commander:
-        image: rediscommander/redis-commander:latest
-        hostname: redis-commander
-        container_name: redis-commander
-        depends_on: 
-            - redis
-        environment: 
-            REDIS_HOSTS: docker:redis:6379
-            HTTP_USER: ${REDIS_COMMANDER_USER}
-            HTTP_PASSWORD: ${REDIS_COMMANDER_PASSWORD}
-
     nextcloud:
         image: nextcloud:latest
         hostname: nextcloud
