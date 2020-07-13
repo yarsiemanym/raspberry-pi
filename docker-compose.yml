@@ -14,13 +14,24 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             PGDATA: /var/lib/postgresql/data/pgdata
 
+    mysql:
+        image: mysql/mysql-server:latest
+        hostname: mysql
+        container_name: mysql
+        restart: always
+        volumes:
+            - /mnt/wd-passport/mysql:/var/lib/mysql
+        environment: 
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+
     adminer:
         image: adminer:latest
         hostname: adminer
         container_name: adminer
         restart: always
-        depends_on: 
-            - postgres
 
     redis:
         image: redis:latest
@@ -58,14 +69,19 @@ services:
             - 3012:3012
 
     blog:
-        image: drupal:latest
+        image: wordpress:latest
         hostname: blog
         container_name: blog
         restart: always
         depends_on: 
-            - postgres
+            - mysql
         volumes:
-            - /mnt/wd-passport/drupal:/var/www/html
+            - /mnt/wd-passport/wordpress:/var/www/html
+        environment: 
+            WORDPRESS_DB_HOST: mysql
+            WORDPRESS_DB_USER: ${MYSQL_USER}
+            WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+            WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
 
     pihole:
         image: pihole/pihole:latest
