@@ -19,6 +19,8 @@ services:
         hostname: adminer
         container_name: adminer
         restart: always
+        depends_on: 
+            - postgres
 
     redis:
         image: redis:latest
@@ -30,6 +32,8 @@ services:
         image: rediscommander/redis-commander:latest
         hostname: redis-commander
         container_name: redis-commander
+        depends_on: 
+            - redis
         environment: 
             REDIS_HOSTS: docker:redis:6379
             HTTP_USER: ${REDIS_COMMANDER_USER}
@@ -53,8 +57,6 @@ services:
             REDIS_HOST: redis
             TRUSTED_PROXIES: reverse-proxy
             NEXTCLOUD_TRUSTED_DOMAINS: nextcloud.${DOMAIN_NAME}
-            NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_ADMIN_USER}
-            NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD}
 
     bitwarden:
         image : bitwardenrs/server:raspberry

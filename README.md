@@ -62,15 +62,17 @@ docker-compose up -d pihole
 ```
 
 17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
-18. Start web apps one at a time
+18. Start Bitwarden
 
 ```
+docker-compose up -d redis-commander
+docker-compose up -d adminer
 docker-compose up -d nextcloud
 docker-compose up -d bitwarden 
 docker-compose up -d blog
 ```
 
-19. Start Nginx reverse proxy last
+19.  Start Nginx reverse proxy last
 
 ```
 docker-compose up -d reverse-proxy
