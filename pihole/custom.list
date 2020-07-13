@@ -1,5 +1,4 @@
-192.168.1.200 zaborelli.lan
-192.168.1.200 nextcloud.zaborelli.lan
-192.168.1.200 bitwarden.zaborelli.lan
-192.168.1.200 blog.zaborelli.lan
-192.168.1.200 pihole.zaborelli.lan
+192.168.1.200 nextcloud.home.lan
+192.168.1.200 bitwarden.home.lan
+192.168.1.200 blog.home.lan
+192.168.1.200 pihole.home.lan
