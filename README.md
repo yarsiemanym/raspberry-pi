@@ -84,7 +84,7 @@ docker-compose up -d reverse-proxy
 
 nextcloud.home.lan => Nextcloud  
 bitwarden.home.lan => Bitwarden  
-blog.home.lan => Wordpress  
+blog.home.lan => WordPress  
 pihole.home.lan => Pi-hole  
 
 ## Links
@@ -96,13 +96,12 @@ pihole.home.lan => Pi-hole
 - [Installing docker and docker-compose on a Raspberry Pi 4](https://www.zuidwijk.com/blog/installing-docker-and-docker-compose-on-a-raspberry-pi-4/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Docker Hub](https://hub.docker.com)
-  - [Postgres Container Image](https://hub.docker.com/_/postgres)
   - [MySQL Container Image](https://hub.docker.com/r/beercan1989/arm-mysql) (ARM compatible image)
   - [Adminer Container Image](https://hub.docker.com/_/adminer)
   - [Redis Container Image](https://hub.docker.com/_/redis)
   - [Nextcloud Container Image](https://hub.docker.com/_/nextcloud)
   - [Bitwarden Container Image](https://hub.docker.com/r/bitwardenrs/server) (ARM compatible image)
-  - [Wordpress Container Image](https://hub.docker.com/_/wordpress/)
+  - [WordPress Container Image](https://hub.docker.com/_/wordpress/)
   - [Pi-hole Container Image](https://hub.docker.com/r/pihole/pihole)
   - [Nginx Container Image](https://hub.docker.com/_/nginx)
 - [evox95/wdpassport-utils](https://github.com/evox95/wdpassport-utils)
