@@ -1,19 +1,6 @@
 version: "3"
 services:
 
-    postgres:
-        image: postgres:latest
-        hostname: postgres
-        container_name: postgres
-        restart: always
-        volumes:
-            - /mnt/wd-passport/postgres:/var/lib/postgresql/data/pgdata
-        environment:
-            POSTGRES_DB: ${POSTGRES_DB}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            PGDATA: /var/lib/postgresql/data/pgdata
-
     mysql:
         image: beercan1989/arm-mysql:latest
         hostname: mysql
@@ -45,15 +32,15 @@ services:
         container_name: nextcloud
         restart: always
         depends_on:
-            - postgres
+            - mysql
             - redis
         volumes:
             - /mnt/wd-passport/nextcloud:/var/www/html
         environment:
-            POSTGRES_HOST: postgres
-            POSTGRES_DB: ${POSTGRES_DB}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            MYSQL_HOST: mysql
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             REDIS_HOST: redis
             TRUSTED_PROXIES: reverse-proxy
             NEXTCLOUD_TRUSTED_DOMAINS: nextcloud.${DOMAIN_NAME}
