@@ -1,6 +1,2 @@
 192.168.1.1 router.home.lan
-192.168.1.200 adminer.home.lan
-192.168.1.200 nextcloud.home.lan
-192.168.1.200 bitwarden.home.lan
-192.168.1.200 blog.home.lan
-192.168.1.200 pihole.home.lan
+192.168.1.200 raspberry-pi.home.lan
