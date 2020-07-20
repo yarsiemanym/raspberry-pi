@@ -1,1 +1,1 @@
-ngrok http -subdomain=*.saltrelli 80
+ngrok http -subdomain=*.saltrelli -log=stdout 80 > /dev/null &
