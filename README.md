@@ -63,29 +63,34 @@ docker-compose up -d pihole
 ```
 
 17. [Make Raspberry Pi its own DNS server](https://pimylifeup.com/raspberry-pi-dns-settings/)
-18. Start web apps next in no particular order
+18. Start containers using Docker Compose.
 
 ```
-docker-compose up -d adminer
-docker-compose up -d nextcloud
-docker-compose up -d bitwarden
-docker-compose up -d blog
+docker-compose up -d
 ```
 
-19.  Start Nginx reverse proxy last
+19.  In your router settings, make 192.168.1.200 your primary DNS server.  Choose any secondary you'd like, e.g. `1.1.1.1`.
+20.  Install Ngrok.
 
 ```
-docker-compose up -d reverse-proxy
+cd  ./ngrok
+./install.sh
 ```
 
-20. In your router settings, make 192.168.1.200 your primary DNS server.  Choose any secondary you'd like, e.g. `1.1.1.1`.
+21.  Run the [`./ngrok/run.sh script`](./ngrok/install.sh) to run Ngrok.
+
+```
+cd  ./ngrok
+./run.sh
+```
 
 ## Virtual Hosts
 
-nextcloud.home.lan => Nextcloud  
-bitwarden.home.lan => Bitwarden  
-blog.home.lan => WordPress  
-pihole.home.lan => Pi-hole  
+nextcloud.saltrelli.ngrok.io => Nextcloud  
+bitwarden.saltrelli.ngrok.io => Bitwarden  
+blog.saltrelli.ngrok.io => WordPress  
+pihole.saltrelli.ngrok.io => Pi-hole  
+adminer.saltrelli.ngrok.io => Adminer  
 
 ## Links
 
@@ -105,3 +110,4 @@ pihole.home.lan => Pi-hole
   - [Pi-hole Container Image](https://hub.docker.com/r/pihole/pihole)
   - [Nginx Container Image](https://hub.docker.com/_/nginx)
 - [evox95/wdpassport-utils](https://github.com/evox95/wdpassport-utils)
+- [Ngrok](https://www.ngrok.com)
