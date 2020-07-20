@@ -92,10 +92,10 @@ services:
         cap_add:
             - NET_ADMIN
 
-    reverse-proxy:
+    nginx:
         image: nginx:latest
-        hostname: reverse-proxy
-        container_name: reverse-proxy
+        hostname: nginx
+        container_name: nginx
         restart: always
         depends_on: 
             - nextcloud
@@ -104,8 +104,8 @@ services:
             - pihole
             - adminer
         volumes:
-            - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
-            - ./reverse-proxy/conf.d:/etc/nginx/conf.d
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/conf.d:/etc/nginx/conf.d
         ports: 
             - 80:80
             - 443:443

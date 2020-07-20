@@ -70,17 +70,17 @@ docker-compose up -d
 ```
 
 19.  In your router settings, make 192.168.1.200 your primary DNS server.  Choose any secondary you'd like, e.g. `1.1.1.1`.
-20.  Install Ngrok.
+20.  Install [Ngrok](https://www.ngrok.com).
 
 ```
-cd  ./ngrok
+cd ./ngrok
 ./install.sh
 ```
 
 21.  Run the [`./ngrok/run.sh script`](./ngrok/install.sh) to run Ngrok.
 
 ```
-cd  ./ngrok
+cd ./ngrok
 ./run.sh
 ```
 
