@@ -19,8 +19,6 @@ services:
         hostname: adminer
         container_name: adminer
         restart: always
-        ports:
-            - 8084:80
 
     redis:
         image: redis:latest
@@ -36,8 +34,6 @@ services:
         depends_on:
             - mysql
             - redis
-        ports:
-            - 8080:80
         volumes:
             - /mnt/wd-passport/nextcloud:/var/www/html
         environment:
@@ -57,7 +53,6 @@ services:
         volumes:
             - /mnt/wd-passport/bitwarden:/data
         ports:
-            - 8081:80
             - 3012:3012
 
     blog:
@@ -67,8 +62,6 @@ services:
         restart: always
         depends_on: 
             - mysql
-        ports:
-            - 8082:80
         volumes:
             - /mnt/wd-passport/wordpress:/var/www/html
         environment: 
@@ -89,7 +82,6 @@ services:
             - 53:53/tcp
             - 53:53/udp
             - 67:67/udp
-            - 8083:80
         environment:
             TZ: America/New York
             WEBPASSWORD: ${PIHOLE_PASSWORD}
@@ -100,20 +92,20 @@ services:
         cap_add:
             - NET_ADMIN
 
-    #reverse-proxy:
-    #    image: nginx:latest
-    #    hostname: reverse-proxy
-    #    container_name: reverse-proxy
-    #    restart: always
-    #    depends_on: 
-    #        - nextcloud
-    #        - bitwarden
-    #        - blog
-    #        - pihole
-    #        - adminer
-    #    volumes:
-    #        - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
-    #        - ./reverse-proxy/conf.d:/etc/nginx/conf.d
-    #    ports: 
-    #        - 80:80
-    #        - 443:443
+    reverse-proxy:
+        image: nginx:latest
+        hostname: reverse-proxy
+        container_name: reverse-proxy
+        restart: always
+        depends_on: 
+            - nextcloud
+            - bitwarden
+            - blog
+            - pihole
+            - adminer
+        volumes:
+            - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+            - ./reverse-proxy/conf.d:/etc/nginx/conf.d
+        ports: 
+            - 80:80
+            - 443:443
