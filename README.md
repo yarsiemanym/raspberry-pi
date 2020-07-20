@@ -72,27 +72,20 @@ docker-compose up -d bitwarden
 docker-compose up -d blog
 ```
 
-19.  In your router settings, make 192.168.1.200 your primary DNS server.  Choose any secondary you'd like, e.g. `1.1.1.1`.
-
-20.  Install ngrok
+19.  Start Nginx reverse proxy last
 
 ```
-sudo unzip ngrok/ngrok-stable-linux-arm.zip -d /usr/local/bin/
-ngrok authtoken {auth token}
+docker-compose up -d reverse-proxy
 ```
 
-21. Start ngrok
-
-```
-./ngrok/run.sh
-```
+20. In your router settings, make 192.168.1.200 your primary DNS server.  Choose any secondary you'd like, e.g. `1.1.1.1`.
 
 ## Virtual Hosts
 
-nextcloud.saltrelli.ngrok.io => Nextcloud  
-bitwarden.saltrelli.ngrok.io => Bitwarden  
-blog.saltrelli.ngrok.io => WordPress  
-pihole.saltrelli.ngrok.io => Pi-hole  
+nextcloud.home.lan => Nextcloud  
+bitwarden.home.lan => Bitwarden  
+blog.home.lan => WordPress  
+pihole.home.lan => Pi-hole  
 
 ## Links
 
@@ -110,17 +103,5 @@ pihole.saltrelli.ngrok.io => Pi-hole
   - [Bitwarden Container Image](https://hub.docker.com/r/bitwardenrs/server) (ARM compatible image)
   - [WordPress Container Image](https://hub.docker.com/_/wordpress/)
   - [Pi-hole Container Image](https://hub.docker.com/r/pihole/pihole)
+  - [Nginx Container Image](https://hub.docker.com/_/nginx)
 - [evox95/wdpassport-utils](https://github.com/evox95/wdpassport-utils)
-- [ngrok](https://ngrok.com/)
-
-## To Do
-
-- [ ] Figure out how to periodically zip, compress, encrypt, and backup contents of WD Passport to Amazon S3
-- [ ] Test disaster recovery protocol
-- [ ] Install OpenVPN client and connect to ProtonVPN
-- [ ] Add Deluge to docker-compose
-- [ ] Acquire static IP address from ISP
-- [ ] Setup port forwarding in home router
-- [ ] Point domain name at static IP address
-- [ ] Get SSL certs
-- [ ] Setup HTTPS

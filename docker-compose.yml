@@ -20,7 +20,7 @@ services:
         container_name: adminer
         restart: always
         ports:
-            - 8084:8080
+            - 8084:80
 
     redis:
         image: redis:latest
